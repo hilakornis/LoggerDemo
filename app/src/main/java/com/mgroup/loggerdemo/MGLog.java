@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 final class MGLog {
 
-    private static final String regrexLegalVariableAndFunctionNames = "[a-zA-Z][a-zA-Z0-9_]";
+    private static final String regrexLegalVariableAndFunctionNames = "[a-zA-Z<][a-zA-Z0-9_>]";
     private static final String regexCaptureUntilFirstOpenBracket = "[\\s\\S]*?(?=\\([\\w\\W])";
     private static final String regexClassAndFunctionName = regrexLegalVariableAndFunctionNames +"*."+ regrexLegalVariableAndFunctionNames +"*$";
     private static final String regrexFunctionName = "(?<=((\\.))).*";
@@ -79,7 +79,7 @@ final class MGLog {
             res = foundString;
         }
 
-        assert (!Objects.equals(res, ""));
+        //            assert (!Objects.equals(res, ""));
 
         return res;
     }
@@ -87,6 +87,9 @@ final class MGLog {
     private static String printClassAndFunctionName() {
         StackTraceElement[] ste = Thread.currentThread().getStackTrace();
         String lineToParse = ste[configuration.level_in_stack_trace].toString();
+
+
+
 
         String lineNoBrackets = getStringWithRegrex(regexCaptureUntilFirstOpenBracket, lineToParse);
         String lineOnlyFunctionAndClassName = getStringWithRegrex(regexClassAndFunctionName, lineNoBrackets);

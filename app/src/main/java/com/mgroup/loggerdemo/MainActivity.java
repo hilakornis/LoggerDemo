@@ -11,9 +11,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-
+        Car car = new Car();
+        car.function();
+        MGLog.d("HERE", "check point 4");
     }
 }
