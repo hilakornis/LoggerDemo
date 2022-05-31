@@ -1,12 +1,10 @@
 package com.mgroup.loggerdemo;
 
 import android.util.Log;
-
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-final class MGLog {
+//import com.mgroup.mgaa.MGLog;
+public final class MGLog {
 
     private static final String regrexLegalVariableAndFunctionNames = "[a-zA-Z<][a-zA-Z0-9_>]";
     private static final String regexCaptureUntilFirstOpenBracket = "[\\s\\S]*?(?=\\([\\w\\W])";
@@ -112,7 +110,7 @@ final class MGLog {
     }
     public static void i(String TAG, String msg) {
         String s = TAG + MGLog.configuration.delimiter + ":" + MGLog.configuration.delimiter + printClassAndFunctionName();
-        Log.i(TAG,printClassAndFunctionName());
+
         String msgToPrint = "";
         if(!MGLog.configuration.isPrintAsLogRegularOn){
             msgToPrint = printClassAndFunctionName() + MGLog.configuration.delimiter + msg;
@@ -154,7 +152,7 @@ final class MGLog {
             msgToPrint = msg;
         }
 
-        Log.e(TAG, msgToPrint);
+        Log.w(TAG, msgToPrint);
     }
     public static void wtf(String TAG, String msg) {
         String msgToPrint = "";
@@ -180,7 +178,7 @@ final class MGLog {
     }
     public static void i(String TAG, String msg, Throwable throwable) {
         String s = TAG + MGLog.configuration.delimiter + ":" + MGLog.configuration.delimiter + printClassAndFunctionName();
-        Log.i(TAG,printClassAndFunctionName());
+
         String msgToPrint = "";
         if(!MGLog.configuration.isPrintAsLogRegularOn){
             msgToPrint = printClassAndFunctionName() + MGLog.configuration.delimiter + msg;
@@ -222,7 +220,7 @@ final class MGLog {
             msgToPrint = msg;
         }
 
-        Log.e(TAG, msgToPrint, throwable);
+        Log.w(TAG, msgToPrint, throwable);
     }
     public static void wtf(String TAG, String msg, Throwable throwable) {
         String msgToPrint = "";
